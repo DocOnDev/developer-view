@@ -1,28 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    Content Goes Here!
+    <h1>{{message}}</h1>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import gql from "graphql-tag";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
+  name: "app",
+  data() {
+    return {
+    }
+  },
+  apollo: {
+    commits: gql`
+      query { commits {
+        id
+        score
+        authors { authorName }
+      }
+    }
+  `,
+  },
+  computed: {
+    message(){ return this.commits ? 'Commit: ' + this.commits[0].id + ' By:' + this.commits[0].authors[0].authorName + ' Score:' + this.commits[0].score : '' },
+  },
+};
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+</script>
