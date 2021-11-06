@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Header/>
     <div :key="c" v-for="(commit, c) in commits">
       <h1>{{commit.commitMessage}}</h1>
         <h2>
@@ -16,33 +17,59 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
+  import gql from "graphql-tag";
+  import Header from '@/components/header/Header.vue';
 
-export default {
-  name: "app",
-  data() {
-    return {
-    }
-  },
-  apollo: {
-    commits: gql`
-      query {
-        commits {
-          commitMessage
-          score
-          repoCommitShortId
-          authors {
-            name
-            email
-          }
-          repoCommitId
-          files {
-            name: location
+  export default {
+    name: "app",
+    components: { Header, },
+    data() {
+      return {
+      }
+    },
+    apollo: {
+      commits: gql`
+        query {
+          commits {
+            commitMessage
+            score
+            repoCommitShortId
+            authors {
+              name
+              email
+            }
+            repoCommitId
+            files {
+              name: location
+            }
           }
         }
-      }
-  `,
-  },
-};
+    `,
+    },
+  };
 
 </script>
+
+<style>
+html {
+    font-family: Garamond, serif;
+    background-color: #366;
+    color: #fed;
+    a {
+      color: #dcb;
+      text-decoration: none;
+      &:hover{
+        color: #aaa
+      }
+    }
+  }
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  html, body {
+    margin: .5em;
+    padding: .3em;
+    height: 100%;
+  }
+</style>
