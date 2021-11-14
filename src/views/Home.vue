@@ -42,7 +42,7 @@
     apollo: {
       commits: gql`
         query {
-          commits {
+          commits (orderBy: createdAt_DESC) {
             commitMessage
             score
             repoCommitShortId
