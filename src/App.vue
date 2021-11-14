@@ -2,21 +2,21 @@
   <div id="app">
     <b-container class="bv-example-row">
       <Header/>
-      <b-row style="padding-top: 1em">
-
-        <b-list-group>
-          <b-list-group-item href="#" :key="c" v-for="(commit, c) in commits" class="flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between" style="background-color: #9AA; padding: .3em;">
-              <h5>{{commit.commitMessage}}</h5>
-              <small><b-badge variant="light">{{commit.score}}</b-badge></small>
-            </div>
-
-            <p class="mb-1" :key="f" v-for="(file, f) in commit.files">{{file.name}}</p>
-          </b-list-group-item>
-        </b-list-group>
-      </b-row>
     </b-container>
-
+    <b-container>
+      <b-row>
+      <b-col>
+          <b-card style="width: 50%; max-width: 20rem; float: left" class="mb-2" :key="c" v-for="(commit, c) in commits">
+            <b-card-header :class="'card-score-'+commit.score">{{commit.commitMessage}}</b-card-header>
+            <b-card-text>
+              {{commit.authors[0].name}}
+              <p class="mb-1" :key="f" v-for="(file, f) in commit.files">{{file.name}}</p>
+              <b-button :href="commit.repository.uri + 'commit/' + commit.repoCommitId" target="_blank">{{commit.repository.name}} <b-badge variant="light">{{commit.score}}</b-badge></b-button>
+            </b-card-text>
+          </b-card>
+      </b-col>
+    </b-row>
+    </b-container>
   </div>
 </template>
 
@@ -46,6 +46,10 @@
             files {
               name: location
             }
+            repository {
+              name
+              uri
+            }
           }
         }
     `,
@@ -53,3 +57,24 @@
   };
 
 </script>
+
+<style>
+.card-score-0 {
+  background-color: FireBrick !important;
+}
+.card-score-1 {
+  background-color: IndianRed !important;
+}
+.card-score-2 {
+  background-color: Wheat !important;
+}
+.card-score-3 {
+  background-color: Cornsilk !important;
+}
+.card-score-4 {
+  background-color: MediumSeaGreen !important;
+}
+.card-score-5 {
+  background-color: Green !important;
+}
+</style>
