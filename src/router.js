@@ -14,12 +14,7 @@ export default new Router({
       name: 'home',
       component: Home,
       children: [
-        // UserHome will be rendered inside Home's <router-view>
-        // when / is matched
         { path: '', component: UnSelected },
-
-        // UserProfile will be rendered inside Home's <router-view>
-        // when /profile is matched
         { path: ':id', component: Selected }
       ]
     },
