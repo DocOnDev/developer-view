@@ -1,21 +1,27 @@
 <template>
-  <div id="app">
-    <b-container fluid>
-      <Header/>
-    </b-container>
-    <b-container fluid>
+  <b-row>
+    <b-col style="padding: 1em;">
+      <b-list-group>
+        <span :key="c" v-for="(commit, c) in commits">
+          <b-list-group-item :to="'/'+commit.repoCommitId" class="d-flex justify-content-between align-items-center">
+            {{commit.commitMessage}}
+            <b-badge v-bind:variant='scoreColor(commit.score)'>{{commit.score}}</b-badge>
+          </b-list-group-item>
+        </span>
+      </b-list-group>
+    </b-col>
+    <b-col cols="8" style="padding: 1em 2em 2em 1em;">
       <router-view/>
-    </b-container>
-  </div>
+    </b-col>
+  </b-row>
 </template>
 
 <script>
   import gql from "graphql-tag";
-  import Header from '@/components/header/Header.vue';
 
   export default {
     name: "app",
-    components: { Header, },
+    components: { },
     data: function() {
       return {
         scoreVariants: [
@@ -58,24 +64,3 @@
     },
   };
 </script>
-
-<style>
-.score-color-0 {
-  background-color: FireBrick !important;
-}
-.score-color-1 {
-  background-color: IndianRed !important;
-}
-.score-color-2 {
-  background-color: Wheat !important;
-}
-.score-color-3 {
-  background-color: Cornsilk !important;
-}
-.score-color-4 {
-  background-color: MediumSeaGreen !important;
-}
-.score-color-5 {
-  background-color: Green !important;
-}
-</style>
