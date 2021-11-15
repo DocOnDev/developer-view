@@ -46,6 +46,7 @@
             commitMessage
             score
             repoCommitShortId
+            branch
             authors {
               name
               email

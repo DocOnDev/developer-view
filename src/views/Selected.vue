@@ -1,7 +1,7 @@
 <template>
   <b-row>
     <b-col :key="c" v-for="(commit, c) in commits">
-      <b-card :header="commit.commitMessage" v-bind:header-text-variant='textColor(commit.score)' v-bind:header-bg-variant='scoreColor(commit.score)' :sub-title="commit.repository.name" v-bind:border-variant='scoreColor(commit.score)'>
+      <b-card :header="commit.commitMessage" v-bind:header-text-variant='textColor(commit.score)' v-bind:header-bg-variant='scoreColor(commit.score)' :sub-title="commit.repository.name + ' [' + commit.branch + ']'" v-bind:border-variant='scoreColor(commit.score)'>
         <b-row>
         </b-row>
         <b-row>
@@ -30,6 +30,7 @@
       commitMessage
       score
       repoCommitShortId
+      branch
       authors {
         name
         email
