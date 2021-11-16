@@ -26,7 +26,8 @@
     "vue-template-compiler": "^2.6.11"
   },
     "gitHooks": {
-      "commit-msg": "tj_hooks/commit-msg"
+        "commit-msg": "echo $HUSKY_GIT_PARAMS",
+        "post-commit-msg": "tj_hooks/post-commit"
   },
   "eslintConfig": {
     "root": true,
