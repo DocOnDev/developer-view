@@ -26,7 +26,7 @@
     "vue-template-compiler": "^2.6.11"
   },
     "gitHooks": {
-        "commit-msg": "echo $1",
+        "commit-msg": "echo 'This is it: $1'",
         "post-commit-msg": "tj_hooks/post-commit"
   },
   "eslintConfig": {
