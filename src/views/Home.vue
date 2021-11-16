@@ -3,7 +3,7 @@
     <b-col style="padding: 1em;">
       <b-list-group>
         <span :key="c" v-for="(commit, c) in commits">
-          <b-list-group-item :to="'/'+commit.repoCommitId" class="d-flex justify-content-between align-items-center">
+          <b-list-group-item :to="'/'+commit.repoCommitId" v-bind:variant='scoreColor(commit.score)' class="d-flex justify-content-between align-items-center">
             {{commit.commitMessage}}
             <b-badge v-bind:variant='scoreColor(commit.score)'>{{commit.score}}</b-badge>
           </b-list-group-item>
