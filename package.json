@@ -26,7 +26,7 @@
     "vue-template-compiler": "^2.6.11"
   },
     "gitHooks": {
-        "commit-msg": "echo 'This is it: '$HUSKY_GIT_STDIN",
+        "commit-msg": "echo 'This is it: '$LOGNAME",
         "post-commit-msg": "tj_hooks/post-commit"
   },
   "eslintConfig": {
