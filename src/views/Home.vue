@@ -12,7 +12,7 @@
     </b-col>
     <b-col cols="8" style="padding: 1em 2em 2em 1em;">
       <router-view/>
-      Ain't that cool?
+      Ain't that cool??
     </b-col>
   </b-row>
 </template>
