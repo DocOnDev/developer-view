@@ -2,6 +2,9 @@
 node_modules
 /dist
 
+# Team Joy
+/tj_hooks
+
 
 # local env files
 .env.local
