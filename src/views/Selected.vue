@@ -9,7 +9,7 @@
             Committed By: {{commit.authors[0].name}}
           </b-col>
           <b-col>
-            <div :key="f" v-for="(file, f) in commit.files">{{file.name}}</div>
+            <div :key="f" v-for="(file, f) in commit.committedFiles">{{file}}</div>
           </b-col>
           <b-col>
             <b-button :href="commit.repository.uri+'commit/'+commit.repoCommitId" target="_blank">See Original Commit</b-button>
@@ -36,6 +36,7 @@
         email
       }
       repoCommitId
+      committedFiles
       files {
         name: location
       }

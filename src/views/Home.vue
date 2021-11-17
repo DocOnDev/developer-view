@@ -52,6 +52,7 @@
               email
             }
             repoCommitId
+            committedFiles
             files {
               name: location
             }
