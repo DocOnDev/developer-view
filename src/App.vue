@@ -58,24 +58,3 @@
     },
   };
 </script>
-
-<style>
-.score-color-0 {
-  background-color: FireBrick !important;
-}
-.score-color-1 {
-  background-color: IndianRed !important;
-}
-.score-color-2 {
-  background-color: Wheat !important;
-}
-.score-color-3 {
-  background-color: Cornsilk !important;
-}
-.score-color-4 {
-  background-color: MediumSeaGreen !important;
-}
-.score-color-5 {
-  background-color: Green !important;
-}
-</style>

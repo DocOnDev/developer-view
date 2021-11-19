@@ -19,8 +19,7 @@
           </b-nav-form> -->
 
           <b-nav-item-dropdown text="Repository" right>
-            <b-dropdown-item href="#">The Buffalo Ryders Web Site</b-dropdown-item>
-            <b-dropdown-item href="#">Developer View</b-dropdown-item>
+            <b-dropdown-item :key="r" v-for="(repo, r) in repositories" href="#">{{repo.name}}</b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown right>
@@ -36,3 +35,24 @@
     </b-navbar>
   </div>
 </template>
+
+
+<script>
+  import gql from "graphql-tag";
+
+  export const SINGLE_QUERY = gql`
+  query GetRepos {
+    repositories {
+    id
+    name
+    }
+  }`;
+
+  export default {
+    apollo: {
+      repositories: {
+        query: SINGLE_QUERY,
+        },
+      },
+  };
+</script>
