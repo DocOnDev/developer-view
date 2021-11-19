@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import BootstrapVue from 'bootstrap-vue'
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import App from './App.vue'
 import router from './router';
 import ApolloClient from 'apollo-boost'
@@ -13,6 +13,7 @@ const apolloClient = new ApolloClient({
 
 Vue.use(VueApollo)
 Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
 Vue.config.productionTip = false
 
 const apolloProvider = new VueApollo({

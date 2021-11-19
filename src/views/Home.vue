@@ -5,7 +5,7 @@
         <span :key="c" v-for="(commit, c) in commits">
           <b-list-group-item :to="'/'+commit.repoCommitId" v-bind:variant='scoreColor(commit.score)' class="d-flex justify-content-between align-items-center px-2 py-2">
             <span class="pr-2 d-inline-block text-truncate">{{commit.commitMessage}}</span>
-            <b-badge v-bind:variant='scoreColor(commit.score)'>{{commit.score}}</b-badge>
+            <b-badge v-bind:variant='scoreColor(commit.score)'>{{commit.score}} <b-icon v-bind:icon='scoreIcon(commit.score)'></b-icon></b-badge>
           </b-list-group-item>
         </span>
       </b-list-group>
@@ -31,12 +31,23 @@
             'dark',
             'info',
             'success'
+        ],
+        scoreIcons: [
+            'b-icon-emoji-angry-fill',
+            'b-icon-emoji-frown-fill',
+            'b-icon-emoji-expressionless-fill',
+            'b-icon-emoji-neutral-fill',
+            'b-icon-emoji-smile-fill',
+            'b-icon-emoji-laughing-fill'
         ]
       }
     },
     methods: {
       scoreColor: function(score) {
         return this.scoreVariants[score]
+      },
+      scoreIcon: function(score) {
+        return this.scoreIcons[score]
       }
     },
     apollo: {
