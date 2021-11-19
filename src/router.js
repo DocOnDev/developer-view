@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
+import Repo from './views/Repo.vue';
 import UnSelected from './views/UnSelected.vue';
 import Selected from './views/Selected.vue';
 
@@ -12,7 +13,12 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home,
+      component: Home
+    },
+    {
+      path: '/repos/:id',
+      name: 'repos',
+      component: Repo,
       children: [
         { path: '', component: UnSelected },
         { path: ':id', component: Selected }

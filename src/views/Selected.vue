@@ -66,7 +66,6 @@
             'white',
             'white'
         ]
-
       }
     },
     methods: {
@@ -76,7 +75,6 @@
       textColor: function(score) {
         return this.textVariants[score]
       }
-
     },
     apollo: {
       commits: {
