@@ -19,7 +19,7 @@
           </b-nav-form> -->
 
           <b-nav-item-dropdown text="Repository" right>
-            <b-dropdown-item :key="r" v-for="(repo, r) in repositories" href="#">{{repo.name}}</b-dropdown-item>
+            <b-dropdown-item :key="r" v-for="(repo, r) in repositories" :to="'/repos/'+repo.id">{{repo.name}}</b-dropdown-item>
           </b-nav-item-dropdown>
 
           <b-nav-item-dropdown right>
