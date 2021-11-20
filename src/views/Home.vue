@@ -6,7 +6,6 @@
           <b-link :to="{ name: 'repos', params: { slug: repo.slug } }" class="card-link">See Details</b-link>
         </b-card>
         <p />
-
       </span>
     </b-col>
     <b-col class="py-3 pl-2 pr-3">
