@@ -81,7 +81,7 @@
         query: SINGLE_QUERY,
         variables() {
           return {
-            commitId: this.$route.params.id
+            commitId: this.$route.params.commit
           };
         },
       },

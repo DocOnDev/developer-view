@@ -1,10 +1,9 @@
 <template>
   <b-row>
-    {{this.$route.params.id}}
     <b-col cols="3" class="vh-100" style="padding: 1em;">
       <b-list-group class="overflow-auto h-75">
         <span :key="c" v-for="(commit, c) in commits">
-          <b-list-group-item :to="'/repos/'+commit.repository.id+'/'+commit.repoCommitId" v-bind:variant='scoreColor(commit.score)' class="d-flex justify-content-between align-items-center px-2 py-2">
+          <b-list-group-item :to="{ name: 'commitdetail', params: {commit: commit.repoCommitId}}" append v-bind:variant='scoreColor(commit.score)' class="d-flex justify-content-between align-items-center px-2 py-2">
             <span class="pr-2 d-inline-block text-truncate">{{commit.commitMessage}}</span>
             <b-badge v-bind:variant='scoreColor(commit.score)'>{{commit.score}} <b-icon v-bind:icon='scoreIcon(commit.score)'></b-icon></b-badge>
           </b-list-group-item>
@@ -21,8 +20,8 @@
   import gql from "graphql-tag";
 
   export const SINGLE_QUERY = gql`
-  query GetCommit($repoId: ID!) {
-    commits ( where: {repository: {id: $repoId}} ) {
+  query GetCommit($slug: String!) {
+    commits ( where: {repository: {slug: $slug}} ) {
       createdAt
       commitMessage
       score
@@ -41,6 +40,7 @@
         id
         name
         uri
+        slug
       }
     }
   }`;
@@ -90,7 +90,7 @@
         query: SINGLE_QUERY,
         variables() {
           return {
-            repoId: this.$route.params.id
+            slug: this.$route.params.slug
           };
         },
       },

@@ -16,12 +16,12 @@ export default new Router({
       component: Home
     },
     {
-      path: '/repos/:id',
+      path: '/repos/:slug',
       name: 'repos',
       component: Repo,
       children: [
         { path: '', component: UnSelected },
-        { path: ':id', component: Selected }
+        { path: ':commit', name: 'commitdetail', component: Selected }
       ]
     },
     {
