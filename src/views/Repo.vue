@@ -4,7 +4,7 @@
       <b-list-group class="overflow-auto h-75">
         <span :key="c" v-for="(commit, c) in commits">
           <b-list-group-item :to="{ name: 'commitdetail', params: {commit: commit.repoCommitId}}" append v-bind:variant='scoreColor(commit.score)' class="d-flex justify-content-between align-items-center px-2 py-2">
-            <span class="pr-2 d-inline-block text-truncate">{{commit.commitMessage}}</span>
+            <span class="pr-2 d-inline-block text-truncate">{{commit.subject}}</span>
             <b-badge v-bind:variant='scoreColor(commit.score)'>{{commit.score}} <b-icon v-bind:icon='scoreIcon(commit.score)'></b-icon></b-badge>
           </b-list-group-item>
         </span>
@@ -23,7 +23,7 @@
   query GetCommit($slug: String!) {
     commits ( where: {repository: {slug: $slug}}, orderBy: createdAt_DESC ) {
       createdAt
-      commitMessage
+      subject
       score
       repoCommitShortId
       branch

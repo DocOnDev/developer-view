@@ -1,17 +1,15 @@
 <template>
   <b-row>
     <b-col :key="c" v-for="(commit, c) in commits">
-      <b-card :header="commit.commitMessage" v-bind:header-text-variant='textColor(commit.score)' v-bind:header-bg-variant='scoreColor(commit.score)' :sub-title="commit.repository.name + ' [' + commit.branch + ']'" v-bind:border-variant='scoreColor(commit.score)'>
-        <b-row>
-        </b-row>
+      <b-card :header="commit.repository.name + ' [' + commit.branch + '] - ' + commit.authors[0].name" v-bind:header-text-variant='textColor(commit.score)' v-bind:header-bg-variant='scoreColor(commit.score)' :sub-title="commit.subject" v-bind:border-variant='scoreColor(commit.score)'>
         <b-row>
           <b-col>
-            Committed By: {{commit.authors[0].name}}
+            {{commit.body}}
           </b-col>
           <b-col>
             <div :key="f" v-for="(file, f) in commit.committedFiles">{{file}}</div>
           </b-col>
-          <b-col>
+          <b-col cols="2">
             <b-button :href="commit.repository.uri+'commit/'+commit.repoCommitId" target="_blank">See Original Commit</b-button>
           </b-col>
         </b-row>
@@ -27,7 +25,8 @@
   query GetCommit($commitId: String!) {
     commits ( where: {repoCommitId: $commitId} ) {
       createdAt
-      commitMessage
+      subject
+      body
       score
       repoCommitShortId
       branch

@@ -37,7 +37,7 @@
       commits: gql`
         query {
           commits {
-            commitMessage
+            subject
             score
             repoCommitShortId
             authors {
