@@ -21,7 +21,7 @@
 
   export const SINGLE_QUERY = gql`
   query GetCommit($slug: String!) {
-    commits ( where: {repository: {slug: $slug}} ) {
+    commits ( where: {repository: {slug: $slug}}, orderBy: createdAt_DESC ) {
       createdAt
       commitMessage
       score
