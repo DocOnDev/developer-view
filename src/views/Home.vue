@@ -2,7 +2,7 @@
   <b-row>
     <b-col cols="3" class="vh-100" style="padding: 1em;">
       <span :key="r" v-for="(repo, r) in repositories">
-        <b-card v-bind:title='repo.name'>
+        <b-card v-bind:header='repo.name' v-bind:border-variant='scoreColor(repo.commit[0].score)' header-text-variant="white" v-bind:header-bg-variant='scoreColor(repo.commit[0].score)'>
           <b-link :to="{ name: 'repos', params: { slug: repo.slug } }" class="card-link">See Details</b-link>
         </b-card>
         <p />
@@ -57,6 +57,10 @@
           name
           uri
           slug
+          commit(
+            orderBy: createdAt_DESC
+            first: 1
+          ) { score }
         }
       }
     `,
