@@ -8,9 +8,6 @@
         <p />
       </span>
     </b-col>
-    <b-col class="py-3 pl-2 pr-3">
-      <router-view/>
-    </b-col>
   </b-row>
 </template>
 
