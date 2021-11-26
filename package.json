@@ -10,10 +10,12 @@
   "dependencies": {
     "apollo-boost": "^0.4.9",
     "bootstrap-vue": "^2.21.2",
+    "chart.js": "^3.6.0",
     "core-js": "^3.6.5",
     "graphql": "^15.7.2",
     "vue": "^2.6.11",
     "vue-apollo": "^3.0.8",
+    "vue-chartjs": "^3.5.1",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
@@ -25,9 +27,9 @@
     "eslint-plugin-vue": "^6.2.2",
     "vue-template-compiler": "^2.6.11"
   },
-    "gitHooks": {
-        "commit-msg": "tj_hooks/commit-msg $GIT_PARAMS",
-        "post-commit": "tj_hooks/post-commit $GIT_PARAMS"
+  "gitHooks": {
+    "commit-msg": "tj_hooks/commit-msg $GIT_PARAMS",
+    "post-commit": "tj_hooks/post-commit $GIT_PARAMS"
   },
   "eslintConfig": {
     "root": true,
