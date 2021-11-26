@@ -20,7 +20,7 @@ export default new Router({
       name: 'repos',
       component: Repo,
       children: [
-        { path: '', component: UnSelected },
+        { path: '/', component: UnSelected },
         { path: ':commit', name: 'commitdetail', component: Selected }
       ]
     },
