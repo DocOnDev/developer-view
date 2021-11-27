@@ -19,18 +19,16 @@
             <b-link :href='"/repos/"+repo.slug+"/"+repo.commit[0].repoCommitId'  class="card-link">{{repo.commit[0].subject}}</b-link>
           </b-card>
       </b-card-group>
-      <RandomChart/>
     </b-col>
   </b-row>
 </template>
 
 <script>
   import gql from "graphql-tag";
-  import RandomChart from '../components/charts/RandomChart.vue'
 
   export default {
     name: "app",
-    components: { RandomChart },
+    components: {  },
     data: function() {
       return {
         scoreVariants: [

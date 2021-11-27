@@ -10,14 +10,16 @@
         </span>
       </b-list-group>
     </b-col>
-    <b-col class="py-3 pl-2 pr-3">
+    <b-col cols="9" class="py-3 pl-2 pr-3">
       <router-view/>
+      <RandomChart/>
     </b-col>
   </b-row>
 </template>
 
 <script>
   import gql from "graphql-tag";
+  import RandomChart from '../components/charts/RandomChart.vue'
 
   export const SINGLE_QUERY = gql`
   query GetCommit($slug: String!) {
@@ -46,6 +48,7 @@
   }`;
 
   export default {
+    components: { RandomChart },
     data: function() {
       return {
         scoreVariants: [
