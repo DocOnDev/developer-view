@@ -26,11 +26,11 @@
 
 <script>
   import gql from "graphql-tag";
-
+  import RandomChart from '../components/charts/RandomChart.vue'
 
   export default {
     name: "app",
-    components: { },
+    components: { RandomChart },
     data: function() {
       return {
         scoreVariants: [
