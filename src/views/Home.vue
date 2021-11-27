@@ -19,12 +19,14 @@
             <b-link :href='"/repos/"+repo.slug+"/"+repo.commit[0].repoCommitId'  class="card-link">{{repo.commit[0].subject}}</b-link>
           </b-card>
       </b-card-group>
+      <RandomChart/>
     </b-col>
   </b-row>
 </template>
 
 <script>
   import gql from "graphql-tag";
+
 
   export default {
     name: "app",
