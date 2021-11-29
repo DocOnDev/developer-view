@@ -3,16 +3,16 @@
     <b-col cols="3" class="vh-100" style="padding: 1em;">
       <b-list-group class="overflow-auto h-75">
         <span :key="c" v-for="(commit, c) in commits">
-          <b-list-group-item :to="{ name: 'commitdetail', params: {commit: commit.repoCommitId}}" append v-bind:variant='scoreColor(commit.score)' class="d-flex justify-content-between align-items-center px-2 py-2">
+          <b-list-group-item :to="{ name: 'commitdetail', params: {commit: commit.repoCommitId}}" append :variant='scoreColor(commit.score)' class="d-flex justify-content-between align-items-center px-2 py-2">
             <span class="pr-2 d-inline-block text-truncate">{{commit.subject}}</span>
-            <b-badge v-bind:variant='scoreColor(commit.score)'>{{commit.score}} <b-icon v-bind:icon='scoreIcon(commit.score)'></b-icon></b-badge>
+            <b-badge :variant='scoreColor(commit.score)'>{{commit.score}} <b-icon :icon='scoreIcon(commit.score)'></b-icon></b-badge>
           </b-list-group-item>
         </span>
       </b-list-group>
     </b-col>
     <b-col cols="9" class="py-3 pl-2 pr-3">
       <router-view/>
-      <RandomChart/>
+      <RandomChart :repoSlug='slug()' />
     </b-col>
   </b-row>
 </template>
@@ -21,7 +21,7 @@
   import gql from "graphql-tag";
   import RandomChart from '../components/charts/RandomChart.vue'
 
-  export const SINGLE_QUERY = gql`
+  export const REPO_COMMIT_QRY = gql`
   query GetCommit($slug: String!) {
     commits ( where: {repository: {slug: $slug}}, orderBy: createdAt_DESC ) {
       createdAt
@@ -86,14 +86,17 @@
       },
       scoreIcon: function(score) {
         return this.scoreIcons[score]
+      },
+      slug: function() {
+        return this.$route.params.slug
       }
     },
     apollo: {
       commits: {
-        query: SINGLE_QUERY,
+        query: REPO_COMMIT_QRY,
         variables() {
           return {
-            slug: this.$route.params.slug
+            slug: this.slug()
           };
         },
       },

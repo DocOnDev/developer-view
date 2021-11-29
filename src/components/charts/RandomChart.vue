@@ -1,20 +1,41 @@
 <template>
   <div class="small">
-    <line-chart :chart-data="datacollection"></line-chart>
+    <bar-chart :chart-data="datacollection"></bar-chart>
     <button @click="fillData()">Randomize</button>
   </div>
 </template>
 
 <script>
-  import LineChart from './LineChart.js'
+import gql from "graphql-tag";
+
+  import BarChart from './BarChart.js'
+  export const COMMITS_GRAPH_QUERY = gql`
+  query GetCommit($slug: String!) {
+    commits ( where: {repository: {slug: $slug}}, orderBy: createdAt_ASC ) {
+      createdAt
+      score
+      repoCommitId
+    }
+  }`;
+
+
 
   export default {
     name: "RandomChart",
+    props: ['repoSlug'],
     components: {
-      LineChart
+      BarChart
     },
     data () {
       return {
+        scoreVariants: [
+            'red',
+            'yellow',
+            'black',
+            'grey',
+            'blue',
+            'green'
+        ],
         datacollection: {}
       }
     },
@@ -22,29 +43,33 @@
       this.fillData()
     },
     methods: {
+      scoreColor: function(score) {
+        return this.scoreVariants[score]
+      },
       fillData () {
-        this.datacollection = {
-          labels: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()],
-          datasets: [
-            {
-              label: 'More Data',
-              backgroundColor: '#7979f8',
-              data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
-            },            {
-              label: 'Data One',
-              backgroundColor: '#79f879',
-              data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
-            }, {
-              label: 'Data Two',
-              backgroundColor: '#f89797',
-              data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
-            }
-          ]
+        let datasets = []
+        for (let c = 0; c < this.commits.length; c++) {
+          datasets.push({label: this.commits[c].createdAt, backgroundColor: this.scoreColor(this.commits[c].score), data: [this.commits[c].score]})
         }
+
+        console.log(datasets)
+
+        this.datacollection = {datasets}
       },
       getRandomInt () {
         return Math.floor(Math.random() * (50 - 5 + 1)) + 5
       }
-    }
+    },
+    apollo: {
+      commits: {
+        query: COMMITS_GRAPH_QUERY,
+        variables() {
+          return {
+            slug: this.repoSlug
+          };
+        },
+      },
+    },
+
   }
 </script>
