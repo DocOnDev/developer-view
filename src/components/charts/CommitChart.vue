@@ -15,6 +15,7 @@ import gql from "graphql-tag";
       createdAt
       score
       repoCommitId
+      subject
     }
   }`;
 
@@ -43,9 +44,10 @@ import gql from "graphql-tag";
         return this.scoreVariants[score]
       },
       fillData (commits=this.commits) {
-        let datasets = []
+        let datasets = [], labels = []
         for (let c = 0; c < commits.length; c++) {
-          datasets.push({label: commits[c].createdAt, backgroundColor: this.scoreColor(commits[c].score), data: [commits[c].score]})
+          labels.push(commits[c].createdAt)
+          datasets.push({label: commits[c].subject, backgroundColor: this.scoreColor(commits[c].score), data: [commits[c].score]})
         }
         this.datacollection = {datasets}
       },
