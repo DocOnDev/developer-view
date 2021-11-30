@@ -38,17 +38,14 @@ import gql from "graphql-tag";
         datacollection: {}
       }
     },
-    mounted () {
-      this.fillData()
-    },
     methods: {
       scoreColor: function(score) {
         return this.scoreVariants[score]
       },
-      fillData () {
+      fillData (commits=this.commits) {
         let datasets = []
-        for (let c = 0; c < this.commits.length; c++) {
-          datasets.push({label: this.commits[c].createdAt, backgroundColor: this.scoreColor(this.commits[c].score), data: [this.commits[c].score]})
+        for (let c = 0; c < commits.length; c++) {
+          datasets.push({label: commits[c].createdAt, backgroundColor: this.scoreColor(commits[c].score), data: [commits[c].score]})
         }
         this.datacollection = {datasets}
       },
@@ -59,6 +56,11 @@ import gql from "graphql-tag";
     apollo: {
       commits: {
         query: COMMITS_GRAPH_QUERY,
+        result ({ data, loading }) {
+          if (!loading) {
+            this.fillData(data.commits)
+          }
+        },
         variables() {
           return {
             slug: this.repoSlug
