@@ -1,7 +1,7 @@
 <template>
   <div class="small">
+    <button @click="fillData()">Load Data</button>
     <bar-chart :chart-data="datacollection"></bar-chart>
-    <button @click="fillData()">Randomize</button>
   </div>
 </template>
 
@@ -19,9 +19,8 @@ import gql from "graphql-tag";
   }`;
 
 
-
   export default {
-    name: "RandomChart",
+    name: "CommitChart",
     props: ['repoSlug'],
     components: {
       BarChart
@@ -51,9 +50,6 @@ import gql from "graphql-tag";
         for (let c = 0; c < this.commits.length; c++) {
           datasets.push({label: this.commits[c].createdAt, backgroundColor: this.scoreColor(this.commits[c].score), data: [this.commits[c].score]})
         }
-
-        console.log(datasets)
-
         this.datacollection = {datasets}
       },
       getRandomInt () {
@@ -70,6 +66,5 @@ import gql from "graphql-tag";
         },
       },
     },
-
   }
 </script>

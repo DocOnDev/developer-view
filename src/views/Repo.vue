@@ -12,14 +12,14 @@
     </b-col>
     <b-col cols="9" class="py-3 pl-2 pr-3">
       <router-view/>
-      <RandomChart :repoSlug='slug()' />
+      <CommitChart :repoSlug='slug()' />
     </b-col>
   </b-row>
 </template>
 
 <script>
   import gql from "graphql-tag";
-  import RandomChart from '../components/charts/RandomChart.vue'
+  import CommitChart from '../components/charts/CommitChart.vue'
 
   export const REPO_COMMIT_QRY = gql`
   query GetCommit($slug: String!) {
@@ -48,7 +48,7 @@
   }`;
 
   export default {
-    components: { RandomChart },
+    components: { CommitChart },
     data: function() {
       return {
         scoreVariants: [
