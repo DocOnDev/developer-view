@@ -1,7 +1,6 @@
 <template>
   <div class="small">
-    <button @click="fillData()">Load Data</button>
-    <bar-chart :chart-data="datacollection"></bar-chart>
+    <bar-chart :chart-data="datacollection" :options="chartoptions"></bar-chart>
   </div>
 </template>
 
@@ -11,7 +10,7 @@ import gql from "graphql-tag";
   import BarChart from './BarChart.js'
   export const COMMITS_GRAPH_QUERY = gql`
   query GetCommit($slug: String!) {
-    commits ( where: {repository: {slug: $slug}}, orderBy: createdAt_ASC ) {
+    commits ( where: {repository: {slug: $slug}}, last: 10, orderBy: createdAt_ASC ) {
       createdAt
       score
       repoCommitId
@@ -36,7 +35,13 @@ import gql from "graphql-tag";
             'blue',
             'green'
         ],
-        datacollection: {}
+        datacollection: {},
+        chartoptions: {
+          legend: { display: false },
+          scales: {
+            yAxes: [{ ticks: { min: 0 } }]
+          }
+        },
       }
     },
     methods: {
@@ -50,9 +55,6 @@ import gql from "graphql-tag";
           datasets.push({label: commits[c].subject, backgroundColor: this.scoreColor(commits[c].score), data: [commits[c].score]})
         }
         this.datacollection = {datasets}
-      },
-      getRandomInt () {
-        return Math.floor(Math.random() * (50 - 5 + 1)) + 5
       }
     },
     apollo: {
