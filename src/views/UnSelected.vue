@@ -1,5 +1,7 @@
 <template>
-  <b-text>
-    Nothing Selected
-  </b-text>
+  <b-row>
+    <b-col>
+      Nothing Selected
+    </b-col>
+  </b-row>
 </template>
