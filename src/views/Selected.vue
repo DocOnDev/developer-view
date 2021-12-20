@@ -20,37 +20,11 @@
 
 <script>
 
-import { GET_COMMIT } from '../queries';
+import { GET_COMMIT } from '@/queries';
+import { SCORE_COLORS } from '@/mixins/score_colors';
 
   export default {
-    data: function() {
-      return {
-        scoreVariants: [
-            'danger',
-            'warning',
-            'secondary',
-            'dark',
-            'info',
-            'success'
-        ],
-        textVariants: [
-            'white',
-            'black',
-            'white',
-            'white',
-            'white',
-            'white'
-        ]
-      }
-    },
-    methods: {
-      scoreColor: function(score) {
-        return this.scoreVariants[score]
-      },
-      textColor: function(score) {
-        return this.textVariants[score]
-      }
-    },
+    mixins: [SCORE_COLORS],
     apollo: {
       commits: {
         query: GET_COMMIT,
