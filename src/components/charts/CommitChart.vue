@@ -5,18 +5,8 @@
 </template>
 
 <script>
-import gql from "graphql-tag";
-
   import BarChart from './BarChart.js'
-  export const COMMITS_GRAPH_QUERY = gql`
-  query GetCommit($slug: String!) {
-    commits ( where: {repository: {slug: $slug}}, last: 10, orderBy: createdAt_ASC ) {
-      createdAt
-      score
-      repoCommitId
-      subject
-    }
-  }`;
+  import { GET_LATEST_COMMITS_FOR_REPO } from '@/queries';
 
 
   export default {
@@ -59,7 +49,7 @@ import gql from "graphql-tag";
     },
     apollo: {
       commits: {
-        query: COMMITS_GRAPH_QUERY,
+        query: GET_LATEST_COMMITS_FOR_REPO,
         result ({ data, loading }) {
           if (!loading) {
             this.fillData(data.commits)

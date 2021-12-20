@@ -46,6 +46,16 @@ query {
   }
 }`;
 
+export const GET_LATEST_COMMITS_FOR_REPO = gql`
+query GetCommit($slug: String!) {
+  commits ( where: {repository: {slug: $slug}}, last: 10, orderBy: createdAt_ASC ) {
+    createdAt
+    score
+    repoCommitId
+    subject
+  }
+}`;
+
 export const GET_REPOSITORIES = gql`
 query {
   repositories {
