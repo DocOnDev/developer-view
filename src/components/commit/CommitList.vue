@@ -10,22 +10,22 @@
 </template>
 
 <script>
-import { GET_COMMITS_FOR_REPO } from '@/components/commit/queries';
-import { SCORE_COLORS } from '@/mixins/score_colors';
+  import { GET_COMMITS_FOR_REPO } from '@/components/commit/queries';
+  import { SCORE_COLORS } from '@/mixins/score_colors';
 
-export default {
-  name: "CommitList",
-  props: ['repoSlug'],
-  mixins: [SCORE_COLORS],
-  apollo: {
-    commits: {
-      query: GET_COMMITS_FOR_REPO,
-      variables() {
-        return {
-          slug: this.repoSlug
-        };
+  export default {
+    name: "CommitList",
+    props: ['repoSlug'],
+    mixins: [SCORE_COLORS],
+    apollo: {
+      commits: {
+        query: GET_COMMITS_FOR_REPO,
+        variables() {
+          return {
+            slug: this.repoSlug
+          };
+        },
       },
     },
-  },
-};
+  };
 </script>

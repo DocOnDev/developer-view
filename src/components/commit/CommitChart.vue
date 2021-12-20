@@ -9,7 +9,6 @@
   import { GET_LATEST_COMMITS_FOR_REPO } from '@/components/commit/queries';
   import { SCORE_COLORS } from '@/mixins/score_colors';
 
-
   export default {
     name: "CommitChart",
     props: ['repoSlug'],

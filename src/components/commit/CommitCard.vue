@@ -1,6 +1,6 @@
 <template>
   <b-col>
-    <div  :key="c" v-for="(commit, c) in commits">
+    <div :key="c" v-for="(commit, c) in commits">
       <b-card :header="commit.repository.name + ' [' + commit.branch + '] - ' + commit.authors[0].name" v-bind:header-text-variant='textVariant(commit.score)' v-bind:header-bg-variant='scoreVariant(commit.score)' :sub-title="commit.subject" v-bind:border-variant='scoreVariant(commit.score)'>
         <b-row>
           <b-col>
@@ -36,7 +36,5 @@
         },
       },
     },
-
   };
-
 </script>
