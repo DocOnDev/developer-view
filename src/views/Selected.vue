@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import { GET_COMMIT } from '@/queries';
+  import { GET_COMMIT } from '@/components/commit/queries';
   import { SCORE_COLORS } from '@/mixins/score_colors';
 
   export default {

@@ -6,7 +6,7 @@
 
 <script>
   import BarChart from '@/components/charts/BarChart.js'
-  import { GET_LATEST_COMMITS_FOR_REPO } from '@/queries';
+  import { GET_LATEST_COMMITS_FOR_REPO } from '@/components/commit/queries';
   import { SCORE_COLORS } from '@/mixins/score_colors';
 
 

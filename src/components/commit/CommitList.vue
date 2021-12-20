@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { GET_COMMITS_FOR_REPO } from '@/queries';
+import { GET_COMMITS_FOR_REPO } from '@/components/commit/queries';
 import { SCORE_COLORS } from '@/mixins/score_colors';
 
 export default {
