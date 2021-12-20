@@ -24,3 +24,24 @@ query GetCommit($commitId: String!) {
     }
   }
 }`;
+
+export const GET_COMMITS = gql`
+query {
+  commits {
+    subject
+    score
+    repoCommitShortId
+    authors {
+      name
+      email
+    }
+    repoCommitId
+    files {
+      name: location
+    }
+    repository {
+      name
+      uri
+    }
+  }
+}`;
