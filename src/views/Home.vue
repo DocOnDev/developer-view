@@ -24,58 +24,15 @@
 </template>
 
 <script>
-  import gql from "graphql-tag";
+  import { GET_REPOSITORIES } from '@/queries';
+  import { SCORE_COLORS } from '@/mixins/score_colors';
 
   export default {
     name: "app",
     components: {  },
-    data: function() {
-      return {
-        scoreVariants: [
-            'danger',
-            'warning',
-            'secondary',
-            'dark',
-            'info',
-            'success'
-        ],
-        scoreIcons: [
-            'b-icon-emoji-angry-fill',
-            'b-icon-emoji-frown-fill',
-            'b-icon-emoji-expressionless-fill',
-            'b-icon-emoji-neutral-fill',
-            'b-icon-emoji-smile-fill',
-            'b-icon-emoji-laughing-fill'
-        ]
-      }
-    },
-    methods: {
-      scoreColor: function(score) {
-        return this.scoreVariants[score]
-      },
-      scoreIcon: function(score) {
-        return this.scoreIcons[score]
-      }
-    },
+    mixins: [SCORE_COLORS],
     apollo: {
-      repositories: gql`
-      query {
-        repositories {
-          id
-          name
-          uri
-          slug
-          commit(
-            orderBy: createdAt_DESC
-            first: 1
-          ) {
-            repoCommitId
-            score
-            subject
-          }
-        }
-      }
-    `,
+      repositories: GET_REPOSITORIES,
     },
   };
 </script>
