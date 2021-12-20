@@ -7,24 +7,18 @@
 <script>
   import BarChart from './BarChart.js'
   import { GET_LATEST_COMMITS_FOR_REPO } from '@/queries';
+  import { SCORE_COLORS } from '@/mixins/score_colors';
 
 
   export default {
     name: "CommitChart",
     props: ['repoSlug'],
+    mixins: [SCORE_COLORS],
     components: {
       BarChart
     },
     data () {
       return {
-        scoreVariants: [
-            'red',
-            'yellow',
-            'black',
-            'grey',
-            'blue',
-            'green'
-        ],
         datacollection: {},
         chartoptions: {
           legend: { display: false },
@@ -35,9 +29,6 @@
       }
     },
     methods: {
-      scoreColor: function(score) {
-        return this.scoreVariants[score]
-      },
       fillData (commits=this.commits) {
         let datasets = [], labels = []
         for (let c = 0; c < commits.length; c++) {

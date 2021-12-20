@@ -3,9 +3,9 @@
     <b-col cols="3" class="vh-100" style="padding: 1em;">
       <b-list-group class="overflow-auto h-75">
         <span :key="c" v-for="(commit, c) in commits">
-          <b-list-group-item :to="{ name: 'commitdetail', params: {commit: commit.repoCommitId}}" append :variant='scoreColor(commit.score)' class="d-flex justify-content-between align-items-center px-2 py-2">
+          <b-list-group-item :to="{ name: 'commitdetail', params: {commit: commit.repoCommitId}}" append :variant='scoreVariant(commit.score)' class="d-flex justify-content-between align-items-center px-2 py-2">
             <span class="pr-2 d-inline-block text-truncate">{{commit.subject}}</span>
-            <b-badge :variant='scoreColor(commit.score)'>{{commit.score}} <b-icon :icon='scoreIcon(commit.score)'></b-icon></b-badge>
+            <b-badge :variant='scoreVariant(commit.score)'>{{commit.score}} <b-icon :icon='scoreIcon(commit.score)'></b-icon></b-badge>
           </b-list-group-item>
         </span>
       </b-list-group>
@@ -78,10 +78,10 @@
       }
     },
     methods: {
-      scoreColor: function(score) {
+      scoreVariant: function(score) {
         return this.scoreVariants[score]
       },
-      textColor: function(score) {
+      textVariant: function(score) {
         return this.textVariants[score]
       },
       scoreIcon: function(score) {

@@ -2,6 +2,14 @@
 export const SCORE_COLORS = {
   data: function() {
     return {
+      scoreColors: [
+          'red',
+          'yellow',
+          'black',
+          'grey',
+          'blue',
+          'green'
+      ],
       scoreVariants: [
           'danger',
           'warning',
@@ -30,9 +38,12 @@ export const SCORE_COLORS = {
   },
   methods: {
     scoreColor: function(score) {
+      return this.scoreColors[score]
+    },
+    scoreVariant: function(score) {
       return this.scoreVariants[score]
     },
-    textColor: function(score) {
+    textVariant: function(score) {
       return this.textVariants[score]
     },
     scoreIcon: function(score) {
