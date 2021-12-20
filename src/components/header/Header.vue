@@ -38,21 +38,12 @@
 
 
 <script>
-  import gql from "graphql-tag";
-
-  export const SINGLE_QUERY = gql`
-  query GetRepos {
-    repositories {
-    id
-    name
-    slug
-    }
-  }`;
+  import { GET_REPOSITORIES } from '@/queries';
 
   export default {
     apollo: {
       repositories: {
-        query: SINGLE_QUERY,
+        query: GET_REPOSITORIES,
         },
       },
   };

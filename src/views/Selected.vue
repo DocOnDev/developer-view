@@ -19,9 +19,8 @@
 </template>
 
 <script>
-
-import { GET_COMMIT } from '@/queries';
-import { SCORE_COLORS } from '@/mixins/score_colors';
+  import { GET_COMMIT } from '@/queries';
+  import { SCORE_COLORS } from '@/mixins/score_colors';
 
   export default {
     mixins: [SCORE_COLORS],
