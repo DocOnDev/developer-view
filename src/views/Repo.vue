@@ -18,82 +18,21 @@
 </template>
 
 <script>
-  import gql from "graphql-tag";
-  import CommitChart from '../components/charts/CommitChart.vue'
-
-  export const REPO_COMMIT_QRY = gql`
-  query GetCommit($slug: String!) {
-    commits ( where: {repository: {slug: $slug}}, orderBy: createdAt_DESC ) {
-      createdAt
-      subject
-      score
-      repoCommitShortId
-      branch
-      authors {
-        name
-        email
-      }
-      repoCommitId
-      committedFiles
-      files {
-        name: location
-      }
-      repository {
-        id
-        name
-        uri
-        slug
-      }
-    }
-  }`;
+  import { GET_COMMITS_FOR_REPO } from '@/queries';
+  import CommitChart from '@/components/charts/CommitChart.vue'
+  import { SCORE_COLORS } from '@/mixins/score_colors';
 
   export default {
     components: { CommitChart },
-    data: function() {
-      return {
-        scoreVariants: [
-            'danger',
-            'warning',
-            'secondary',
-            'dark',
-            'info',
-            'success'
-        ],
-        textVariants: [
-            'white',
-            'black',
-            'white',
-            'white',
-            'white',
-            'white'
-        ],
-        scoreIcons: [
-            'b-icon-emoji-angry-fill',
-            'b-icon-emoji-frown-fill',
-            'b-icon-emoji-expressionless-fill',
-            'b-icon-emoji-neutral-fill',
-            'b-icon-emoji-smile-fill',
-            'b-icon-emoji-laughing-fill'
-        ]
-      }
-    },
+    mixins: [SCORE_COLORS],
     methods: {
-      scoreVariant: function(score) {
-        return this.scoreVariants[score]
-      },
-      textVariant: function(score) {
-        return this.textVariants[score]
-      },
-      scoreIcon: function(score) {
-        return this.scoreIcons[score]
-      },
       slug: function() {
         return this.$route.params.slug
       }
     },
     apollo: {
       commits: {
-        query: REPO_COMMIT_QRY,
+        query: GET_COMMITS_FOR_REPO,
         variables() {
           return {
             slug: this.slug()

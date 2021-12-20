@@ -56,6 +56,31 @@ query GetCommit($slug: String!) {
   }
 }`;
 
+export const GET_COMMITS_FOR_REPO = gql`
+query GetCommit($slug: String!) {
+  commits ( where: {repository: {slug: $slug}}, orderBy: createdAt_DESC ) {
+    createdAt
+    subject
+    score
+    repoCommitShortId
+    branch
+    authors {
+      name
+      email
+    }
+    repoCommitId
+    committedFiles
+    files {
+      name: location
+    }
+    repository {
+      id
+      name
+      uri
+      slug
+    }
+  }
+}`;
 export const GET_REPOSITORIES = gql`
 query GetRepos {
   repositories {
