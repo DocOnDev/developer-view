@@ -19,32 +19,8 @@
 </template>
 
 <script>
-  import gql from "graphql-tag";
 
-  export const SINGLE_QUERY = gql`
-  query GetCommit($commitId: String!) {
-    commits ( where: {repoCommitId: $commitId} ) {
-      createdAt
-      subject
-      body
-      score
-      repoCommitShortId
-      branch
-      authors {
-        name
-        email
-      }
-      repoCommitId
-      committedFiles
-      files {
-        name: location
-      }
-      repository {
-        name
-        uri
-      }
-    }
-  }`;
+import { GET_COMMIT } from '../queries';
 
   export default {
     data: function() {
@@ -77,7 +53,7 @@
     },
     apollo: {
       commits: {
-        query: SINGLE_QUERY,
+        query: GET_COMMIT,
         variables() {
           return {
             commitId: this.$route.params.commit
