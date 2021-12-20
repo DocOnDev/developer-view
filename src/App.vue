@@ -10,51 +10,17 @@
 </template>
 
 <script>
-  import gql from "graphql-tag";
   import Header from '@/components/header/Header.vue';
+  import { SCORE_COLORS } from '@/mixins/score_colors';
+  import { GET_COMMITS } from '@/queries';
+
 
   export default {
     name: "app",
     components: { Header, },
-    data: function() {
-      return {
-        scoreVariants: [
-            'danger',
-            'warning',
-            'secondary',
-            'dark',
-            'info',
-            'success'
-        ]
-      }
-    },
-    methods: {
-      scoreColor: function(score) {
-        return this.scoreVariants[score]
-      }
-    },
+    mixins: [SCORE_COLORS],
     apollo: {
-      commits: gql`
-        query {
-          commits {
-            subject
-            score
-            repoCommitShortId
-            authors {
-              name
-              email
-            }
-            repoCommitId
-            files {
-              name: location
-            }
-            repository {
-              name
-              uri
-            }
-          }
-        }
-    `,
+      commits: GET_COMMITS,
     },
   };
 </script>
