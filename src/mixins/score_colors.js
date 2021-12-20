@@ -17,6 +17,14 @@ export const SCORE_COLORS = {
           'white',
           'white',
           'white'
+      ],
+      scoreIcons: [
+          'b-icon-emoji-angry-fill',
+          'b-icon-emoji-frown-fill',
+          'b-icon-emoji-expressionless-fill',
+          'b-icon-emoji-neutral-fill',
+          'b-icon-emoji-smile-fill',
+          'b-icon-emoji-laughing-fill'
       ]
     }
   },
@@ -26,6 +34,9 @@ export const SCORE_COLORS = {
     },
     textColor: function(score) {
       return this.textVariants[score]
+    },
+    scoreIcon: function(score) {
+      return this.scoreIcons[score]
     }
   }
 }
