@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import CommitChart from '@/components/charts/CommitChart.vue'
+  import CommitChart from '@/components/commit/CommitChart.vue'
   import CommitList from '@/components/commit/CommitList.vue'
 
   export default {
