@@ -45,3 +45,21 @@ query {
     }
   }
 }`;
+
+export const GET_REPOSITORIES = gql`
+query {
+  repositories {
+    id
+    name
+    uri
+    slug
+    commit(
+      orderBy: createdAt_DESC
+      first: 1
+    ) {
+      repoCommitId
+      score
+      subject
+    }
+  }
+}`;
