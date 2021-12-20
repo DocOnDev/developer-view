@@ -11,16 +11,9 @@
 
 <script>
   import Header from '@/components/header/Header.vue';
-  import { SCORE_COLORS } from '@/mixins/score_colors';
-  import { GET_COMMITS } from '@/queries';
-
 
   export default {
     name: "app",
     components: { Header, },
-    mixins: [SCORE_COLORS],
-    apollo: {
-      commits: GET_COMMITS,
-    },
   };
 </script>
