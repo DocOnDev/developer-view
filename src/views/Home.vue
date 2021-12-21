@@ -15,8 +15,11 @@
       <h4>Public Repositories</h4>
       <p />
       <b-card-group deck class="overflow-auto w-100">
-          <b-card class="mb-3" style="min-width: 200px; max-width: 200px;" :key="r" v-for="(repo, r) in repositories" v-bind:header='repo.name' v-bind:border-variant='scoreVariant(repo.commit[0].score)' header-text-variant="white" v-bind:header-bg-variant='scoreVariant(repo.commit[0].score)'>
-            <b-link :href='"/repos/"+repo.slug+"/"+repo.commit[0].repoCommitId'  class="card-link">{{repo.commit[0].subject}}</b-link>
+          <b-card no-body style="min-width: 200px; max-width: 200px;" :key="r" v-for="(repo, r) in repositories" v-bind:header='repo.name' v-bind:border-variant='scoreVariant(repo.commit[0].score)' header-text-variant="white" v-bind:header-bg-variant='scoreVariant(repo.commit[0].score)'>
+            <b-card-body>
+              <b-link :href='"/repos/"+repo.slug+"/"+repo.commit[0].repoCommitId'  class="card-link">{{repo.commit[0].subject}}</b-link>
+            </b-card-body>
+            <b-card-footer><CommitChart :repoSlug=repo.slug /></b-card-footer>
           </b-card>
       </b-card-group>
     </b-col>
@@ -24,12 +27,14 @@
 </template>
 
 <script>
+  import CommitChart from '@/components/commit/CommitChart.vue'
   import { GET_REPOSITORIES_WITH_LATEST_COMMIT } from '@/queries';
   import { SCORE_COLORS } from '@/mixins/score_colors';
 
   export default {
     name: "app",
     title () { return this.$appName },
+    components: { CommitChart },
     mixins: [SCORE_COLORS],
     apollo: {
       repositories: GET_REPOSITORIES_WITH_LATEST_COMMIT,

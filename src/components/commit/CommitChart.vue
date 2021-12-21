@@ -22,7 +22,7 @@
         chartoptions: {
           legend: { display: false },
           scales: {
-            yAxes: [{ ticks: { min: 0 } }]
+            yAxes: [{ ticks: { min: 0, display: false } }],
           }
         },
       }
