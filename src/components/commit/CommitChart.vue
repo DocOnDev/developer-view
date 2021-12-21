@@ -51,7 +51,7 @@
         for (let c = 0; c < commits.length; c++) {
           var commitDate = new Date(commits[c].createdAt)
           var labelDate = (commitDate.getMonth() + 1) + "/" + commitDate.getDate() + "/" + commitDate.getFullYear() + " " + commitDate.getHours() + ":" + commitDate.getMinutes()
-          datasets.push({label: [commits[c].subject, labelDate], backgroundColor: this.scoreColor(commits[c].score), data: [commits[c].score]})
+          datasets.push({label: [commits[c].subject, labelDate], backgroundColor: this.scoreColor(commits[c].score), data: [commits[c].score], minBarLength: 7})
         }
         this.datacollection = Object.assign({}, {labels}, {datasets});
       }
