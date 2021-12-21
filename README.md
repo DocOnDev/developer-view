@@ -1,5 +1,7 @@
 # developer-view
 
+A web front-end to the Code Joy tooling
+
 ## Project setup
 ```
 npm install
