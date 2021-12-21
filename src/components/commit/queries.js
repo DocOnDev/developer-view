@@ -53,6 +53,9 @@ query GetCommit($slug: String!) {
     score
     repoCommitId
     subject
+    repository {
+      name
+    }
   }
 }`;
 

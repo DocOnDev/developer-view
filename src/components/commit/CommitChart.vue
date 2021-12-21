@@ -23,18 +23,37 @@
           legend: { display: false },
           scales: {
             yAxes: [{ ticks: { min: 0, display: false } }],
-          }
+            xAxes: [{ ticks: { display: false } }],
+          },
+          tooltips: {
+            callbacks: {
+              title: function(tooltipItem, data) {
+                let i = tooltipItem[0]['datasetIndex'];
+                return data['datasets'][i].label[0];
+              },
+              footer: function(tooltipItem, data) {
+                let i = tooltipItem[0]['datasetIndex'];
+                return 'Committed ' + data['datasets'][i].label[1];
+              },
+              label: function(tooltipItem, data) {
+                let i = tooltipItem['datasetIndex'];
+                return 'Score: ' + data['datasets'][i].data[0];
+              }
+            }
+          },
         },
       }
     },
     methods: {
       fillData (commits=this.commits) {
         let datasets = [], labels = []
+        labels.push(this.commits[0].repository.name);
         for (let c = 0; c < commits.length; c++) {
-          labels.push(commits[c].createdAt)
-          datasets.push({label: commits[c].subject, backgroundColor: this.scoreColor(commits[c].score), data: [commits[c].score]})
+          var commitDate = new Date(commits[c].createdAt)
+          var labelDate = (commitDate.getMonth() + 1) + "/" + commitDate.getDate() + "/" + commitDate.getFullYear() + " " + commitDate.getHours() + ":" + commitDate.getMinutes()
+          datasets.push({label: [commits[c].subject, labelDate], backgroundColor: this.scoreColor(commits[c].score), data: [commits[c].score]})
         }
-        this.datacollection = {datasets}
+        this.datacollection = Object.assign({}, {labels}, {datasets});
       }
     },
     apollo: {
