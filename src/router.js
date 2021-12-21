@@ -7,26 +7,31 @@ import Selected from './views/Selected.vue';
 
 Vue.use(Router);
 
-export default new Router({
+const routes = [
+  {
+    path: '/',
+    name: 'home',
+    component: Home,
+  },
+  {
+    path: '/repos/:slug',
+    name: 'repos',
+    component: Repo,
+    children: [
+      { path: '/', component: UnSelected },
+      { path: ':commit', name: 'commitdetail', component: Selected }
+    ]
+  },
+  {
+    path: '/*',
+    component: () => import(/* webpackChunkName: "404" */ './views/FourOhFour.vue'),
+  },
+]
+
+const router = new Router({
   mode: 'history',
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/repos/:slug',
-      name: 'repos',
-      component: Repo,
-      children: [
-        { path: '/', component: UnSelected },
-        { path: ':commit', name: 'commitdetail', component: Selected }
-      ]
-    },
-    {
-      path: '/*',
-      component: () => import(/* webpackChunkName: "404" */ './views/FourOhFour.vue'),
-    },
-  ],
-});
+  base: process.env.BASE_URL,
+  routes
+})
+
+export default router

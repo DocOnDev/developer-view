@@ -20,6 +20,9 @@ const apolloProvider = new VueApollo({
   defaultClient: apolloClient,
 })
 
+import titleMixin from '@/mixins/pageTitle'
+Vue.mixin(titleMixin)
+
 new Vue({
   apolloProvider,
   router,
