@@ -26,10 +26,10 @@
 <script>
   import { GET_REPOSITORIES_WITH_LATEST_COMMIT } from '@/queries';
   import { SCORE_COLORS } from '@/mixins/score_colors';
-  // import { APP_NAME } from '@/config'
 
   export default {
     name: "app",
+    title () { return this.$appName },
     mixins: [SCORE_COLORS],
     apollo: {
       repositories: GET_REPOSITORIES_WITH_LATEST_COMMIT,

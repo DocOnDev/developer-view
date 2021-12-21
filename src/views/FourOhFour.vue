@@ -7,3 +7,9 @@
     </router-link>
   </div>
 </template>
+
+<script>
+export default {
+  title () { return this.$appName + ' Page Not Found' },
+}
+</script>

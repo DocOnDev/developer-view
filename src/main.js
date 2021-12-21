@@ -22,6 +22,7 @@ const apolloProvider = new VueApollo({
 
 import titleMixin from '@/mixins/pageTitle'
 Vue.mixin(titleMixin)
+Vue.prototype.$appName = 'Code Joy'
 
 new Vue({
   apolloProvider,

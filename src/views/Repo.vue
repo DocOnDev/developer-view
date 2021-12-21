@@ -13,10 +13,9 @@
 <script>
   import CommitChart from '@/components/commit/CommitChart.vue'
   import CommitList from '@/components/commit/CommitList.vue'
-  import { APP_NAME } from '@/config'
 
   export default {
-    title: APP_NAME + ' Repo',
+    title () { return this.$appName + ' Repo' },
     components: { CommitChart, CommitList },
     methods: {
       slug: function() {
