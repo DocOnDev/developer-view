@@ -1,5 +1,5 @@
 <template>
-  <div class="small">
+  <div>
     <bar-chart :chart-data="datacollection" :options="chartoptions"></bar-chart>
   </div>
 </template>
