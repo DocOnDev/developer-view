@@ -10,7 +10,20 @@
         </template>
         <b-row>
           <b-col>
-            <div :key="f" v-for="(file, f) in commit.committedFiles">{{file}}</div>
+            <div role="tablist">
+              <div :key="f" v-for="(file, f) in commit.committedFiles">
+                <b-card no-body class="mb-1">
+                  <b-card-header header-tag="header" class="p-1" role="tab">
+                    <b-button block v-b-toggle='"file-"+f' variant="dark" style="text-align:left;">{{file}}</b-button>
+                  </b-card-header>
+                  <b-collapse :id='"file-"+f' role="tabpanel">
+                    <b-card-body>
+                      <b-card-text>This will be more information about {{ file }}</b-card-text>
+                    </b-card-body>
+                  </b-collapse>
+                </b-card>
+              </div>
+            </div>
           </b-col>
         </b-row>
         <template #footer>
