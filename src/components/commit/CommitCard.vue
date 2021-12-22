@@ -5,22 +5,16 @@
         <template #header>
           <span style="float: left; padding-top: .3em;">{{commit.subject}}</span>
           <span style="float: right;">
-            <b-button href="#">{{commit.branch}}</b-button>
+            <b-button :href="commit.repository.uri+'commit/'+commit.repoCommitId" target="_blank">Committed to {{commit.branch}}</b-button>
           </span>
         </template>
         <b-row>
           <b-col>
-            {{commit.authors[0].name}}
-          </b-col>
-          <b-col>
             <div :key="f" v-for="(file, f) in commit.committedFiles">{{file}}</div>
-          </b-col>
-          <b-col cols="2">
-            <b-button :href="commit.repository.uri+'commit/'+commit.repoCommitId" target="_blank">See Original Commit</b-button>
           </b-col>
         </b-row>
         <template #footer>
-          Committed: {{formatDate(commit.createdAt)}}
+          Committed by <b-button href="#">{{commit.authors[0].name}}</b-button> {{formatDate(commit.createdAt)}}
         </template>
       </b-card>
     </div>
