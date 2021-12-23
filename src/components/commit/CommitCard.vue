@@ -18,7 +18,14 @@
                     </b-card-header>
                   <b-collapse :id='"file-"+f' role="tabpanel">
                     <b-card-body>
-                      <b-card-text>This will be more information about {{ file }}</b-card-text>
+                      <b-row>
+                        <b-col cols="3">
+                          <b-card-text>A chart showing checking scores for {{ file }}</b-card-text>
+                        </b-col>
+                        <b-col>
+                          <b-card-text>This will be more information about {{ file }}</b-card-text>
+                        </b-col>
+                      </b-row>
                     </b-card-body>
                   </b-collapse>
                 </b-card>
