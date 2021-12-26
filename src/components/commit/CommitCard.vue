@@ -14,7 +14,7 @@
               <div :key="f" v-for="(file, f) in commit.committedFiles">
                 <b-card no-body class="mb-1" >
                     <b-card-header v-b-toggle='"file-"+f' header-bg-variant="dark" header-text-variant="white">
-                      <b-card-header-text>{{file}}</b-card-header-text>
+                      <b-card-text>{{file}}</b-card-text>
                     </b-card-header>
                   <b-collapse :id='"file-"+f' role="tabpanel">
                     <b-card-body>
