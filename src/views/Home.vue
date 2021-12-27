@@ -19,7 +19,7 @@
             <b-card-body>
               <b-link :href='"/repos/"+repo.slug+"/"+repo.commit[0].repoCommitId'  class="card-link">{{repo.commit[0].subject}}</b-link>
             </b-card-body>
-            <b-card-footer><CommitChart :repoSlug=repo.slug /></b-card-footer>
+            <b-card-footer><RepoCommitChart :repoSlug=repo.slug /></b-card-footer>
           </b-card>
       </b-card-group>
     </b-col>
@@ -27,14 +27,14 @@
 </template>
 
 <script>
-  import CommitChart from '@/components/commit/CommitChart.vue'
+  import RepoCommitChart from '@/components/commit/RepoCommitChart.vue'
   import { GET_REPOSITORIES_WITH_LATEST_COMMIT } from '@/queries';
   import { SCORE_COLORS } from '@/mixins/score_colors';
 
   export default {
     name: "app",
     title () { return this.$appName },
-    components: { CommitChart },
+    components: { RepoCommitChart },
     mixins: [SCORE_COLORS],
     apollo: {
       repositories: GET_REPOSITORIES_WITH_LATEST_COMMIT,

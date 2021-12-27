@@ -10,7 +10,7 @@
   import { SCORE_COLORS } from '@/mixins/score_colors';
 
   export default {
-    name: "CommitChart",
+    name: "RepoCommitChart",
     props: ['repoSlug'],
     mixins: [SCORE_COLORS],
     components: {
