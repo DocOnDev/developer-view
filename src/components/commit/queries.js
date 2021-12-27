@@ -59,6 +59,19 @@ query GetCommit($slug: String!) {
   }
 }`;
 
+export const GET_LATEST_COMMITS_FOR_FILE = gql`
+query GetCommit($commitFile: String!) {
+  commits ( where: {committedFiles_contains_some: [$commitFile]}, last: 10, orderBy: createdAt_DESC ) {
+    createdAt
+    score
+    repoCommitId
+    subject
+    repository {
+      name
+    }
+  }
+}`;
+
 export const GET_COMMITS_FOR_REPO = gql`
 query GetCommit($slug: String!) {
   commits ( where: {repository: {slug: $slug}}, orderBy: createdAt_DESC ) {

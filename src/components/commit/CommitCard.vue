@@ -20,8 +20,7 @@
                     <b-card-body>
                       <b-row>
                         <b-col cols="3">
-                          <b-card-text>A chart showing checking scores for {{ file }}</b-card-text>
-                          <RepoCommitChart :repoSlug='slug()' />
+                          <FileCommitChart :fileName='file' />
                         </b-col>
                         <b-col>
                           <b-card-text>This will be more information about {{ file }}</b-card-text>
@@ -53,20 +52,17 @@
 <script>
   import { GET_COMMIT } from '@/components/commit/queries';
   import { SCORE_COLORS } from '@/mixins/score_colors';
-  import RepoCommitChart from '@/components/commit/RepoCommitChart.vue'
+  import FileCommitChart from '@/components/commit/FileCommitChart.vue'
 
   export default {
     name: "CommitCard",
-    components: { RepoCommitChart },
+    components: { FileCommitChart },
     props: ['commitId'],
     mixins: [SCORE_COLORS],
     methods: {
       formatDate: function(rawDate) {
         let date = new Date(rawDate);
         return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes()
-      },
-      slug: function() {
-        return "httpsgithubcomdocondevteamjoy";
       }
     },
     apollo: {
