@@ -23,7 +23,7 @@
                           <FileCommitChart :fileName='file' />
                         </b-col>
                         <b-col>
-                          <b-card-text>This will be more information about {{ file }}</b-card-text>
+                          <b-card-text>This will be more information regarding {{ file }}</b-card-text>
                         </b-col>
                       </b-row>
                     </b-card-body>
