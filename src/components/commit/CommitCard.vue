@@ -45,6 +45,7 @@
 .card-subtitle {
     background-color: #ddd;
     margin: -1.25em !important;
+    margin-bottom: 0.5rem!important;
     padding: 0.5em 1.25em;
 }
 </style>
