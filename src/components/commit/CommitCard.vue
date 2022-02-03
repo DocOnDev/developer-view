@@ -5,7 +5,7 @@
         <template #header>
           <span style="float: left; padding-top: .3em;">{{commit.subject}}</span>
           <span style="float: right;">
-            <b-button :href="commit.repository.uri+'commit/'+commit.repoCommitId" target="_blank">Committed to {{commit.branch}}</b-button>
+            <b-button :href="commit.repository.uri+commit.repository.repositoryType.commitApiPath+commit.repoCommitId" target="_blank">Committed to {{commit.branch}}</b-button>
           </span>
         </template>
         <b-row>

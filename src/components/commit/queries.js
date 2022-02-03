@@ -21,6 +21,7 @@ query GetCommit($commitId: String!) {
     repository {
       name
       uri
+      repositoryType { commitApiPath }
     }
   }
 }`;
