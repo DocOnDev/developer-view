@@ -62,7 +62,7 @@ query GetCommit($slug: String!) {
 
 export const GET_LATEST_COMMITS_FOR_FILE = gql`
 query GetCommit($commitFile: String!) {
-  commits ( where: {committedFiles_contains_some: [$commitFile]}, last: 10, orderBy: createdAt_DESC ) {
+  commits ( where: {committedFiles_contains_some: [$commitFile]}, last: 10, orderBy: createdAt_ASC ) {
     createdAt
     score
     repoCommitId
