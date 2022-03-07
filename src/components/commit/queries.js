@@ -15,9 +15,6 @@ query GetCommit($commitId: String!) {
     }
     repoCommitId
     committedFiles
-    files {
-      name: location
-    }
     repository {
       name
       uri
@@ -37,9 +34,6 @@ query {
       email
     }
     repoCommitId
-    files {
-      name: location
-    }
     repository {
       name
       uri
@@ -87,9 +81,6 @@ query GetCommit($slug: String!) {
     }
     repoCommitId
     committedFiles
-    files {
-      name: location
-    }
     repository {
       id
       name
